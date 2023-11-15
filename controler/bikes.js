@@ -326,5 +326,18 @@ userRoute.post("/user-feedback",(req,res)=>{
     })
 })
 
+//get feedback by date
+userRoute.post("/admin-feedback-date",(req,res)=>{
+    adminViewSchema.find({date:req.body.date},(err,data)=>{
+        if(err){
+            return err;
+        }else if(data.length === 0){
+            res.json("No feedbacks on this date");
+        }else{
+            res.json(data);
+        }
+    })
+})
+
 
 module.exports = userRoute;
